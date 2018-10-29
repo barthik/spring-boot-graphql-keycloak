@@ -10,7 +10,7 @@ type Role {
 
 type Query {
     # Finds all availible roles
-    roles: [Role]!
+    roles(page: Int = 0, size: Int = 20): [Role]!
     # Counts all availible roles
     rolesCount: Long!
 }
