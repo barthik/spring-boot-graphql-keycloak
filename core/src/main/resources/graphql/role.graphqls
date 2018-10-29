@@ -10,12 +10,12 @@ type Role {
 
 type Query {
     # Finds all availible roles
-    findAllRoles: [Role]!
+    roles: [Role]!
     # Counts all availible roles
-    countRoles: Long!
+    rolesCount: Long!
 }
 
 type Mutation {
     # Creates a new role. Role name and description must be specified
-    createRole(name: String!, description: String!) : Role!
+    newRole(name: String!, description: String!) : Role!
 }

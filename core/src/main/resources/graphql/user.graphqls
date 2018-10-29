@@ -26,14 +26,18 @@ enum State {
 
 extend type Query {
     # Finds all avaiible users
-    findAllUsers: [User]!
+    users: [User]!
     # Counts availible users
-    countUsers: Long!
+    usersCount: Long!
+    # Finds user by id
+    user(id: ID!): User!
+    # Finds user by username
+    userByUsername(username: String!): User!
 }
 
 extend type Mutation {
     # Creates new user with provided informaiton. Username, email and role id must be specified
-    createUser(username: String!, email: String!, requestCount: Int, role: ID!) : User!
+    newUser(username: String!, email: String!, requestCount: Int, role: ID!) : User!
     # Safely removes user with given user id
     deleteUser(id: ID!) : Boolean
     # Updates user request count to the specified value

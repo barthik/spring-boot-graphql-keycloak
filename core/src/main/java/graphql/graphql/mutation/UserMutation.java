@@ -17,7 +17,7 @@ public class UserMutation implements GraphQLMutationResolver {
         this.userRepository = userRepository;
     }
 
-    public User createUser(String username, String email, Integer requestCount, String roleId) {
+    public User newUser(String username, String email, Integer requestCount, String roleId) {
         User user = new User();
         user.setRole(new Role(roleId));
         user.setUsername(username);
@@ -35,7 +35,7 @@ public class UserMutation implements GraphQLMutationResolver {
     }
 
     public User updateUserRequestCount(Integer pageCount, String id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new NotFoundException("The user to be updated was found", id));
+        User user = userRepository.findById(id).orElseThrow(() -> new NotFoundException("User to be updated was not found", id));
 
         user.setRequestCount(pageCount);
 

@@ -15,7 +15,7 @@ public class RoleMutation implements GraphQLMutationResolver {
         this.roleRepository = roleRepository;
     }
 
-    public Role createRole(String name, String description) {
+    public Role newRole(String name, String description) {
         Role role = new Role();
         role.setName(name);
         role.setDescription(description);

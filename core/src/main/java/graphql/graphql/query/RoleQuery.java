@@ -15,11 +15,11 @@ public class RoleQuery implements GraphQLQueryResolver {
         this.roleRepository = roleRepository;
     }
 
-    public Iterable<Role> findAllRoles() {
+    public Iterable<Role> roles() {
         return roleRepository.findAll();
     }
 
-    public long countRoles() {
+    public long rolesCount() {
         return roleRepository.count();
     }
 }

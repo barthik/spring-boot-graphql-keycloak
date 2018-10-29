@@ -84,7 +84,7 @@ Response example:
                     "description": "",
                     "fields": [
                         {
-                            "name": "findAllRoles",
+                            "name": "roles",
                             "description": "Finds all availible roles",
                             "args": [],
                             "type": {
@@ -104,7 +104,7 @@ Response example:
                             "deprecationReason": null
                         },
                         {
-                            "name": "countRoles",
+                            "name": "rolesCount",
                             "description": "Counts all availible roles",
                             "args": [],
                             "type": {
@@ -119,26 +119,6 @@ Response example:
                             "isDeprecated": false,
                             "deprecationReason": null
                         },
-                        {
-                            "name": "findAllUsers",
-                            "description": "Finds all avaiible users",
-                            "args": [],
-                            "type": {
-                                "kind": "NON_NULL",
-                                "name": null,
-                                "ofType": {
-                                    "kind": "LIST",
-                                    "name": null,
-                                    "ofType": {
-                                        "kind": "OBJECT",
-                                        "name": "User",
-                                        "ofType": null
-                                    }
-                                }
-                            },
-                            "isDeprecated": false,
-                            "deprecationReason": null
-                        },
             ...
             ...
             ...
@@ -147,53 +127,50 @@ Response example:
 GraphQL endpoint:
 
 ```cmd
-curl -GET -s "http://localhost:40000/graphql" -H "Authorization:Bearer {{access_token}}" -H "Content-Type:application/json" -b "{\"query\": \"{findAllUsers {id username email requestCount role {id name description} state}}\"}" | jq . 
+curl -GET -s "http://localhost:40000/graphql" -H "Authorization:Bearer {{access_token}}" -H "Content-Type:application/json" -b "{\"query\": \"{users {id username email requestCount role {id name description} state}}\"}" | jq . 
 ```
 
 Response example:
 
 ```json
 {
-    "data": {
-        "findAllUsers": [
-            {
-                "id": "35a30e8f-d032-41cf-8376-679b3f69bb9a",
-                "username": "barthik",
-                "email": "barthik@domain.tld",
-                "requestCount": 100,
-                "role": {
-                    "id": "121ff168-d4e6-4344-9b1f-9f5c8b24d462",
-                    "name": "Admin",
-                    "description": "Admin user role"
-                },
-                "state": "ACTIVE"
-            },
-            {
-                "id": "ddf3a431-78e8-431b-9532-d7f35b20f18a",
-                "username": "frodo",
-                "email": "frodo@lotr.tld",
-                "requestCount": 5,
-                "role": {
-                    "id": "7a04563a-08af-417b-9b6b-bb7c687da572",
-                    "name": "User",
-                    "description": "Regular user role"
-                },
-                "state": "DISABLED"
-            },
-            {
-                "id": "9e4cefa2-c553-4f66-a233-736a93bef183",
-                "username": "pepazdepa",
-                "email": "pepazdepa@depo.tld",
-                "requestCount": 0,
-                "role": {
-                    "id": "7a04563a-08af-417b-9b6b-bb7c687da572",
-                    "name": "User",
-                    "description": "Regular user role"
-                },
-                "state": "BLOCKED"
-            }
-        ]
-    }
+  "data": {
+    "users": [
+      {
+        "id": "3c1ba74f-ac74-4ccb-86d3-72787da51a2e",
+        "email": "barthik@domain.tld",
+        "username": "barthik",
+        "requestCount": 100,
+        "role": {
+          "id": "b7296e82-a2e2-4a99-b82a-1fb5e18295ac",
+          "name": "Admin",
+          "description": "Admin user role"
+        }
+      },
+      {
+        "id": "f3f1ca76-c46e-47e1-a521-8ad8da2f075b",
+        "email": "frodo@lotr.tld",
+        "username": "frodo",
+        "requestCount": 5,
+        "role": {
+          "id": "c524d8c5-a6cb-4696-8047-a18f22e4b480",
+          "name": "User",
+          "description": "Regular user role"
+        }
+      },
+      {
+        "id": "2ed43eac-b19c-4d89-9c6d-0d8a1b9751eb",
+        "email": "pepazdepa@depo.tld",
+        "username": "pepazdepa",
+        "requestCount": 0,
+        "role": {
+          "id": "c524d8c5-a6cb-4696-8047-a18f22e4b480",
+          "name": "User",
+          "description": "Regular user role"
+        }
+      }
+    ]
+  }
 }
 ```
 
