@@ -11,11 +11,17 @@ Prerequisites:
 - Use credentials (client secret) of your realm in the project
 - Create user for the `graphql` realm and roles
 
+---
+
 Keycloak admin console available at `http://localhost:8090/auth/admin/`
 
 Unauthorized requests are redirected to the IDP at `http://localhost:8090/auth/realms/graphql/protocol/openid-connect/auth?response_type=code&client_id=graphql-client&redirect_uri=uri&state=state&login=true&scope=openid`
 
 IDP profile edit available at `http://localhost:8090/auth/realms/graphql/account`
+
+For pagination example see branch `pagination-simple-solution`
+
+---
 
 Get access token:
 
@@ -37,6 +43,7 @@ Response example:
     "scope": "email profile"
 }
 ```
+---
 
 Get user info:
 
@@ -57,6 +64,8 @@ Response example:
     "email": "a.bartholomew@domain.tld"
 }
 ```
+
+---
 
 Get GraphQL schema:
 
@@ -124,6 +133,8 @@ Response example:
             ...
 ```
 
+---
+
 GraphQL endpoint:
 
 ```cmd
@@ -173,5 +184,7 @@ Response example:
   }
 }
 ```
+
+---
 
 GraphiQL available at `http://localhost:40000/graphiql`
