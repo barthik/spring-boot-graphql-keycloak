@@ -1,1 +1,1 @@
-spring-boot+graphql+keycloak
+graphql-springboot

@@ -1,0 +1,21 @@
+# A function role in a particular operation process
+type Role {
+    # Unique role id
+    id: ID!
+    # Role name. Must be specified
+    name: String!
+    # Role description. Must be specified
+    description: String!
+}
+
+type Query {
+    # Finds all availible roles
+    findAllRoles: [Role]!
+    # Counts all availible roles
+    countRoles: Long!
+}
+
+type Mutation {
+    # Creates a new role. Role name and description must be specified
+    createRole(name: String!, description: String!) : Role!
+}

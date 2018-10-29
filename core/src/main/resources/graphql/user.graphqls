@@ -1,0 +1,41 @@
+# Entity that has authority to use an application, equipment, facility, process, or system
+type User {
+    # Unique user id
+    id: ID!
+    # Username or alias of a user
+    username: String!
+    # Primal email address
+    email: String!
+    # Number of executed requests
+    requestCount: Int
+    # Assigned role
+    role: Role
+    # User account state
+    state: State
+}
+
+# User account state
+enum State {
+    # User account is active
+    ACTIVE
+    # User account has been disabled
+    DISABLED
+    # User account has been blocked
+    BLOCKED
+}
+
+extend type Query {
+    # Finds all avaiible users
+    findAllUsers: [User]!
+    # Counts availible users
+    countUsers: Long!
+}
+
+extend type Mutation {
+    # Creates new user with provided informaiton. Username, email and role id must be specified
+    createUser(username: String!, email: String!, requestCount: Int, role: ID!) : User!
+    # Safely removes user with given user id
+    deleteUser(id: ID!) : Boolean
+    # Updates user request count to the specified value
+    updateUserRequestCount(requestCount: Int!, id: ID!) : User!
+}
