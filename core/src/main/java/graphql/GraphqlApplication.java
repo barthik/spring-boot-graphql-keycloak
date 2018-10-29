@@ -28,6 +28,7 @@ public class GraphqlApplication {
         Role adminRole = roleRepository.save(new Role("Admin", "Admin user role"));
 
         userRepository.save(new User(null, "barthik", "barthik@domain.tld", 100, adminRole, User.State.ACTIVE));
+        userRepository.save(new User(null, "frodo", "frodo@lotr.tld", 5, userRole, User.State.DISABLED));
         userRepository.save(new User(null, "pepazdepa", "pepazdepa@depo.tld", 0, userRole, User.State.BLOCKED));
     }
 }
